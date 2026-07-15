@@ -5,10 +5,10 @@
 - Date: 2026-07-14
 - Subject: `CHK-ACORE-WOTLK-001`, `RUN-0015`
 - Branch: `main`
-- Status: **PENDING PUBLICATION — technical checkout and structural validation PASS**
+- Status: **PASS — checkout fidelity, independence, structural review, containment, and first governance publication verified**
 - Lifecycle: `S0 — Proposed`
 
-Final PASS requires the intended governance set to be committed, pushed normally, and verified at matching local/origin/remote refs. Image-build validation is explicitly outside this record.
+PASS was assigned after checkout fidelity, independence, structural review, containment, intended staged-content audit, normal first push, and matching local/origin/remote refs succeeded. Image-build validation is explicitly outside this record and remains not run.
 
 ## Validation matrix
 
@@ -52,8 +52,8 @@ Final PASS requires the intended governance set to be committed, pushed normally
 | Port/network | PASS containment | No publication or configuration change. |
 | Governance accuracy | PASS pre-publication | ADR, manifests, policies, README, sequence, RUN, and VAL reflect evidence. |
 | Secret/restricted publication | PASS pre-staging | No credentials, private network detail, client asset, binary, object pack, or source vendoring. |
-| Governance commit/push | PENDING | Requires normal push; no force. |
-| Final refs | PENDING | Requires post-push equality. |
+| Governance commit/push | PASS | Commit `6f69f87a0f3a64a14bdd9adb5f9eaeecf8b0cd32` pushed normally as a fast-forward; no force. |
+| Governance refs after first push | PASS | Local HEAD, origin/main, and remote main all equaled the governance commit; starting history remained an ancestor. |
 | Lifecycle remains S0 | PASS | No advancement authorized or recorded. |
 
 ## Technical conclusion
@@ -64,6 +64,8 @@ Structural build-context prerequisites pass. This means the pinned definitions c
 
 ## Publication boundary
 
-Final PASS remains withheld until only the intended governance Markdown/current-document set is audited, committed, pushed normally, and final refs match. No historical RUN-0014 or VAL-0014 record may be changed.
+The first publication staged exactly nine intended Markdown/current-document paths. Every object was mode 100644; whitespace, complete-diff, secret/binary, restricted-source, historical-record, and lifecycle checks passed. No internal checkout content was staged. Commit `6f69f87a0f3a64a14bdd9adb5f9eaeecf8b0cd32` was pushed normally, and all three refs matched it.
+
+Completing RUN-0015 and this validation record requires the one authorized validation-only commit. Its object ID and final local/origin/remote equality must be captured after that commit and normal push in the operation's final response. This record does not assign image-build PASS.
 
 Lifecycle remains **S0 — Proposed**.

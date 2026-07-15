@@ -10,7 +10,7 @@
 - Portable source-object repository: `/run/media/deck/blAIneXPLAT/azerothcore/linux/upstream/azerothcore-wotlk/`
 - Internal checkout: `/home/deck/.local/share/blAIne/azerothcore/checkouts/SRC-ACORE-WOTLK-001/`
 - Starting governance commit: `1e74a39cec174d8372f0cc2e0308417205b17023`
-- Publication state in this revision: technical validation and governance content complete; commit and push evidence pending normal publication.
+- Publication state in this revision: technical validation, staged audit, governance commit, and first normal push verified; completed evidence is ready for the single validation-only follow-up commit.
 
 ## Authorization boundary
 
@@ -123,4 +123,10 @@ No source edit, patch, format, generated file, module, submodule, LFS, hook/scri
 
 ## Publication and lifecycle
 
-Staged audit, commit, normal push, and final refs remain pending. Technical checkout and structural validation pass, but VAL-0015 must not be marked final PASS until governance publication and remote verification complete. Lifecycle remains **S0 — Proposed**.
+The staged set contained exactly nine intended Markdown paths: five new ADR/policy/manifest/RUN/VAL documents and four narrowly updated current documents. All staged modes were 100644. Cached status, stat, name-status, whitespace, complete diff, file-mode, path-only secret/binary, object-pack, copied-build-definition, restricted-content, historical-record, and lifecycle checks passed. No internal checkout/source, nested Git data, pack, executable, binary, Dockerfile, generated archive, temporary probe/log, credential, private network detail, client/game asset, or unrelated path was staged.
+
+Governance commit `6f69f87a0f3a64a14bdd9adb5f9eaeecf8b0cd32`, message `Establish internal AzerothCore baseline checkout`, was created with parent `1e74a39cec174d8372f0cc2e0308417205b17023` and pushed normally as a fast-forward. After the first push, local HEAD, local `origin/main`, and remote main all equaled `6f69f87a0f3a64a14bdd9adb5f9eaeecf8b0cd32`; starting-history ancestry passed and the governance tree was clean.
+
+Completing RUN-0015 and VAL-0015 changes their bytes after the first push. One validation-only commit with message `Record internal AzerothCore checkout validation` is therefore required. Its object ID and final three-ref equality are necessarily captured after commit and reported in the final operation response; a commit cannot contain its own object ID.
+
+Technical checkout validation and structural build-context prerequisites pass. Actual image-build validation remains not run. Lifecycle remains **S0 — Proposed**.
