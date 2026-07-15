@@ -39,7 +39,7 @@ A strict host-local listener-shape validation remains unresolved because the roo
 
 No public ingress is currently implemented or validated.
 
-Docker Buildx is not yet installed.
+Docker Buildx v0.35.0 is installed as a checksum-verified, user-scoped CLI plugin on internal storage. Native Linux AMD64 `FROM scratch` builds passed both directly and through Docker Compose using the builder associated with the active `rootless` context. Docker remains rootless with `fuse-overlayfs`; no extra builder, QEMU, privileged helper, registry push, port publication, or multi-platform support was introduced. Buildx updates remain manual governed operations.
 
 No AzerothCore source tree, databases, custom modules, client modifications, ChromieCraft client, or operational Realm Control software is currently included in this repository.
 
@@ -326,20 +326,23 @@ The current rootless Docker environment uses:
 
 Container execution, DNS, HTTPS transport, resource limits, Compose execution, and cleanup have passed validation.
 
+Buildx uses the context-derived `rootless` Docker-driver builder for current native Linux AMD64 builds. The unused builder entry named `default` belongs to the unavailable rootful context and is not required. The plugin is pinned at v0.35.0 under `/home/deck/.docker/cli-plugins/docker-buildx`; its update and rollback policy is recorded in ADR-0013 and `docs/tooling/docker-buildx-user-plugin-management.md`.
+
 The unresolved issue is the listener representation used by `pasta` for loopback-requested publication. It remains relevant to `NET-HOST-LOCAL` validation. It does not prove public reachability and does not determine the final public gameplay ingress path. No AzerothCore port is approved for exposure by the current Docker records.
 
 ## Planned Execution Sequence
 
-1. Record the internet-access and trust-boundary architecture.
-2. Install and validate Docker Buildx.
-3. Acquire and build the clean AzerothCore baseline.
-4. Validate host-local operation.
-5. Determine available inbound-connectivity conditions.
-6. Select an ingress architecture through a later ADR.
-7. Implement only the approved public gameplay exposure.
-8. Validate from an independent internet connection.
-9. Validate that private and prohibited services remain inaccessible.
-10. Introduce authenticated remote management only after its own architecture and threat-model approval.
+1. Established: record the internet-access and trust-boundary architecture.
+2. Established: install and validate Docker Buildx for native rootless builds.
+3. Acquire and pin the official AzerothCore source for the clean unmodified baseline.
+4. Build the clean AzerothCore baseline.
+5. Validate host-local operation.
+6. Determine available inbound-connectivity conditions.
+7. Select an ingress architecture through a later ADR.
+8. Implement only the approved public gameplay exposure.
+9. Validate from an independent internet connection.
+10. Validate that private and prohibited services remain inaccessible.
+11. Introduce authenticated remote management only after its own architecture and threat-model approval.
 
 ## Repository Boundaries
 

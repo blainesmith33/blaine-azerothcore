@@ -23,3 +23,6 @@ Decision authority: ADR-0006
 - SBS-017: The clean baseline shall be built and validated host-locally before inbound-connectivity conditions are characterized or an ingress mechanism is selected.
 - SBS-018: Public gameplay ingress implementation requires a later ADR based on connectivity and threat-model evidence, followed by independent internet validation and private-service non-exposure validation.
 - SBS-019: Authenticated remote management shall follow its own architecture and threat-model approval and shall not be introduced as a side effect of public gameplay exposure.
+- SBS-020: Native Linux AMD64 baseline builds shall use the checksum-verified, user-scoped Buildx version approved by ADR-0013 and the Docker-driver builder associated with the active rootless context.
+- SBS-021: Extra builders, remote nodes, registry pushes, QEMU, `binfmt_misc`, privileged helpers, and multi-platform emulation require later explicit approval and validation.
+- SBS-022: After Buildx validation, the next major operation shall acquire and pin the official AzerothCore source for the clean unmodified baseline; source acquisition and building remain separate governed evidence boundaries.
