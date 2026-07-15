@@ -43,7 +43,9 @@ Docker Buildx v0.35.0 is installed as a checksum-verified, user-scoped CLI plugi
 
 Official AzerothCore WotLK source objects have now been acquired as `SRC-ACORE-WOTLK-001` from `azerothcore/azerothcore-wotlk` `master` and pinned to `34a8bd6655c02448d3da6195dcd00647f634dde3` (tree `25ad25f5fb8e119f68fef69b080934f1182ad8d6`). The full-history upstream clone is governed separately beneath `linux/upstream/azerothcore-wotlk/` and is ignored by this parent repository.
 
-Git object integrity and deterministic tree identity passed. Checkout fidelity did not: the pinned tree contains one symbolic link that the authoritative exFAT project filesystem cannot represent. The verified clone therefore remains no-checkout object storage, not a detached build-ready working tree. No source file has been modified, no module is installed, no image has been built or pulled, no database or client data has been acquired, and no server has started. Buildx remains established but has not been used for AzerothCore.
+The portable exFAT clone remains the verified no-checkout source-object repository; its historical symlink-fidelity failure remains valid. `CHK-ACORE-WOTLK-001` is a separate independent clone on internal ext4, detached at the approved pin. Its required symlink and all 42 executable modes are faithfully represented, the working tree is clean and unmodified, and `.git` is a self-contained directory with copied objects and no alternates or hardlinks.
+
+Static build-context prerequisites pass because the pinned root context contains every referenced path and the Dockerfile can address the real `.git` directory. This does not constitute an AzerothCore image-build validation. No source file has been modified, no module is installed, no image has been built or pulled, no database or client data has been acquired, and no server has started. Buildx remains established but has not yet been used for AzerothCore.
 
 ## Project Principles
 
@@ -336,18 +338,12 @@ The unresolved issue is the listener representation used by `pasta` for loopback
 
 1. Established: record the internet-access and trust-boundary architecture.
 2. Established: install and validate Docker Buildx for native rootless builds.
-3. Established with split result: acquire and pin the official AzerothCore source objects for the clean unmodified baseline; checkout fidelity remains deferred on exFAT.
-4. Next: approve a symlink-faithful source working-tree location or mechanism and complete detached-checkout validation.
-5. Design and execute the clean unmodified baseline image build from the pinned source only after checkout fidelity passes.
+3. Established: acquire and pin the official AzerothCore source objects for the clean unmodified baseline.
+4. Established: create and validate the symlink-faithful independent internal ext4 checkout `CHK-ACORE-WOTLK-001`.
+5. Next: design and execute the clean unmodified baseline image build from the approved checkout.
 6. Initialize databases only after build validation.
 7. Start authserver and worldserver only after database and configuration validation.
-8. Validate host-local operation.
-9. Determine available inbound-connectivity conditions.
-10. Select an ingress architecture through a later ADR.
-11. Implement only the approved public gameplay exposure.
-12. Validate from an independent internet connection.
-13. Validate that private and prohibited services remain inaccessible.
-14. Introduce authenticated remote management only after its own architecture and threat-model approval.
+8. Continue later client, host-local, inbound-connectivity, ingress, and private-service isolation milestones through separate governed operations.
 
 ## Repository Boundaries
 

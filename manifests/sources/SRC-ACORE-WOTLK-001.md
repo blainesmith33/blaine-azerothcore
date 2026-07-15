@@ -88,3 +88,26 @@ The largest logical blobs are SQL source data. The largest is `data/sql/base/db_
 - Service status: no container, authserver, worldserver, database, or listener started.
 
 The next validation boundary is a separately governed, symlink-faithful checkout location or mechanism, followed by detached-HEAD and clean-working-tree verification. No compatibility claim extends beyond source-object integrity and static pinned-tree inspection.
+
+## Checkout materialization — 2026-07-14
+
+The historical exFAT result above remains valid for the portable object-repository path. A separate materialization completed under ADR-0015:
+
+| Field | Result |
+|---|---|
+| Checkout identifier | `CHK-ACORE-WOTLK-001` |
+| Internal path | `/home/deck/.local/share/blAIne/azerothcore/checkouts/SRC-ACORE-WOTLK-001/` |
+| Filesystem | Internal ext4, read/write |
+| Clone independence | PASS: `--no-local`; copied pack; no alternates, hardlinks, partial/promisor state, or external common/object directory |
+| Authoritative origin | Official AzerothCore HTTPS URL |
+| Detached pin | PASS: `34a8bd6655c02448d3da6195dcd00647f634dde3` |
+| Tree | PASS: `25ad25f5fb8e119f68fef69b080934f1182ad8d6` |
+| Symlink fidelity | PASS: one real link with exact text and in-root target |
+| Executable fidelity | PASS: all 42 Git executable entries retain owner execution |
+| Self-contained `.git` | PASS: real internal directory with copied objects and refs |
+| Working-tree cleanliness | PASS: zero modified, missing, untracked, or ignored paths |
+| Deterministic archive digest | PASS: unchanged |
+| Structural build context | `STRUCTURAL BUILD-CONTEXT PREREQUISITES PASS` |
+| Actual image build | Not run; not validated |
+
+Source checkout fidelity is now established only at the internal checkout path. The portable path remains a no-checkout evidence/object repository. No source was modified, no module was added, no image was built or pulled, no database was initialized, no client data was acquired, and no service was started. The next boundary is a separately governed clean-baseline image build.

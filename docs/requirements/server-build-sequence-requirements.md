@@ -30,3 +30,8 @@ Decision authority: ADR-0006
 - SBS-024: A baseline image build requires both Git object integrity and a faithful detached working-tree checkout; object acquisition alone is not build readiness.
 - SBS-025: Because the authoritative exFAT source path cannot represent the pinned symbolic link, a later decision shall approve a symlink-faithful working-tree location or mechanism and validate it before any AzerothCore image build.
 - SBS-026: Database initialization, client-data acquisition, authserver startup, and worldserver startup remain separate post-build operations and shall not occur as a side effect of source acquisition or checkout remediation.
+- SBS-027: Clean baseline builds shall use `CHK-ACORE-WOTLK-001` as the approved source checkout unless a later ADR explicitly replaces it.
+- SBS-028: Build input shall remain detached at source pin `34a8bd6655c02448d3da6195dcd00647f634dde3`, match tree `25ad25f5fb8e119f68fef69b080934f1182ad8d6`, and have a clean working tree and index immediately before build.
+- SBS-029: The approved checkout's `.git` shall remain a self-contained directory with copied objects and refs wherever the pinned build definition requires Git metadata; linked-worktree pointers, alternates, hardlinks, and portable-drive object dependencies are not approved.
+- SBS-030: Core modifications, generated source changes, and modules require a separate governed source path and shall not mutate `CHK-ACORE-WOTLK-001`.
+- SBS-031: Structural build-context validation does not authorize or validate an image build; image acquisition, Buildx execution, compilation, cache/output placement, and cleanup require the next separate operation.

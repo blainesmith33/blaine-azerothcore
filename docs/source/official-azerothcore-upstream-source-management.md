@@ -17,7 +17,7 @@ The physical upstream repository and the public governance repository have separ
 
 ## Pin and fidelity policy
 
-Approved baseline work uses the exact full SHA in the manifest. A complete working checkout must be detached at that SHA, clean, and byte/mode/symlink faithful to the Git tree. The current exFAT location holds a verified no-checkout object repository only: its single pinned symlink cannot be represented on this mount, so checkout and build readiness are deferred.
+Approved baseline work uses the exact full SHA in the manifest. A complete working checkout must be detached at that SHA, clean, and byte/mode/symlink faithful to the Git tree. The exFAT location continues to hold a verified no-checkout object repository only: its single pinned symlink cannot be represented on that mount. `CHK-ACORE-WOTLK-001` now provides a separately governed, independent, faithful checkout on internal ext4.
 
 Do not edit the pinned baseline, create a development branch in the evidence clone, initialize submodules, pull LFS content, apply patches, add modules, or run generated-code/database/update scripts. Customizations belong in separately governed branches, modules, forks, or repositories after the clean baseline is established.
 
@@ -38,6 +38,8 @@ git -C <governance-root> check-ignore -v linux/upstream/azerothcore-wotlk/.git/H
 
 After a faithful checkout becomes possible, additionally require detached `HEAD == <pin>`, a matching tree, clean status, no filters changing content, no untracked source, and another strict object check.
 
+The validated internal checkout model and maintenance rules are recorded in `docs/source/azerothcore-internal-baseline-checkout-management.md`. The portable object repository and internal working checkout have distinct roles and must not be silently substituted for one another.
+
 ## Manifest and update requirements
 
 Every source update must retain full history and record official ref observations, timestamps, prior and new pins, ancestry, commit metadata/signature state, tree, deterministic `git archive` SHA-256, key-file hashes, counts, sizes, case/path/symlink/Gitlink/LFS audits, license, and build-definition/acquisition-behavior changes. Review must occur before moving the approved pin. No moving tag or branch name substitutes for the full SHA.
@@ -46,7 +48,7 @@ Rollback selects a previously validated manifest and object commit; it does not 
 
 ## Build-readiness distinction
 
-Source-object integrity proves that the official Git objects and pin are present. Checkout fidelity proves that the mounted filesystem faithfully represents the pinned tree. Build readiness additionally requires a reviewed working tree, approved cache and output placement, compatible rootless Buildx/Compose invocation, external-image/package acquisition authorization, and static secret/network review. None of those broader claims follows from object acquisition alone.
+Source-object integrity proves that the official Git objects and pin are present. Checkout fidelity proves that the mounted filesystem faithfully represents the pinned tree; this now passes for `CHK-ACORE-WOTLK-001`, while the exFAT path remains unsuitable. Build readiness additionally requires approved cache and output placement, compatible rootless Buildx/Compose invocation, external-image/package acquisition authorization, and static secret/network review. None of those broader claims follows from object or checkout validation alone.
 
 ## License, attribution, and restricted assets
 
