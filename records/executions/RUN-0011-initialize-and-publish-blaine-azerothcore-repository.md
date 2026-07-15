@@ -8,7 +8,7 @@
 - Authorized root: `/run/media/deck/blAIneXPLAT/azerothcore/`
 - Remote: `git@github.com:blainesmith33/blaine-azerothcore.git`
 - Remote branch: `main`
-- Publication state in this record revision: pre-commit audit pending; no PASS claimed.
+- Publication state in this record revision: scaffold commit and first normal push validated; completed evidence is ready for the single validation-only follow-up commit.
 
 ## Authorization boundary
 
@@ -106,13 +106,14 @@ No unrelated-history merge, rebase, force push, history replacement, or working-
 
 ## Commit and push result
 
-- Scaffold commit: pending.
-- Validation-only commit, if needed: pending.
-- Push result: pending.
-- Final local `HEAD`: pending.
-- Final local `origin/main`: pending.
-- Final remote `refs/heads/main`: pending.
-- Original README commit ancestry: pending final verification.
+- Scaffold commit: `eabf64ec2f48bfbf891e94cb6d5e92e6fc871e0a`, message `Publish governed blAIne AzerothCore project scaffold`; parent `950f6bf09b7048aca7208ed9e2ae974290cdb16f`.
+- First push: `git push -u origin main`, exit 0, normal fast-forward `950f6bf..eabf64e`; no force option.
+- Post-first-push local `HEAD`: `eabf64ec2f48bfbf891e94cb6d5e92e6fc871e0a`.
+- Post-first-push local `origin/main`: `eabf64ec2f48bfbf891e94cb6d5e92e6fc871e0a`.
+- Post-first-push remote `refs/heads/main`: `eabf64ec2f48bfbf891e94cb6d5e92e6fc871e0a`.
+- Original README commit ancestry: PASS; `git merge-base --is-ancestor 950f6bf... eabf64e...` exited 0.
+- Post-first-push tree: clean; 78 tracked regular files; zero physical ignored paths and zero untracked files.
+- Validation-only commit: required because completing RUN-0011 and VAL-0011 changes them. It must use message `Record blAIne AzerothCore publication validation` and be pushed normally. Its object ID and final three-ref equality are necessarily verified after this record's bytes are committed and are reported in the final operation report; a commit cannot contain its own final object ID.
 
 ## Lifecycle statement
 
