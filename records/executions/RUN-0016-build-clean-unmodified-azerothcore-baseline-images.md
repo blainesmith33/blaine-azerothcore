@@ -10,7 +10,7 @@
 - Source checkout: `/home/deck/.local/share/blAIne/azerothcore/checkouts/SRC-ACORE-WOTLK-001/`
 - Evidence root: `/home/deck/.local/share/blAIne/azerothcore/build-evidence/BLD-ACORE-WOTLK-001/`
 - Starting governance commit: `43c22db051fd2fa2117e614fd29025b4eff92ed8`
-- Publication state in this revision: technical validation and evidence sealing pass; governance commit/push verification pending.
+- Publication state in this revision: technical validation, evidence sealing, staged audit, first governance commit, normal push, and first post-push ref verification pass; this completed evidence is ready for the single validation-only follow-up commit.
 
 ## Authorization boundary
 
@@ -105,6 +105,10 @@ The evidence set contains 71 files and 576,475 bytes. `evidence-sha256.txt` cove
 
 Created: ADR-0016, build-management documentation, `BLD-ACORE-WOTLK-001`, RUN-0016, and VAL-0016. Updated: README and server-build sequence requirements. No historical record changed.
 
-Staged audit, commit, normal push, and final ref evidence are pending in this revision. No full publication PASS is claimed yet.
+The staged set contained exactly eight intended text files: five new governed Markdown records/documents plus `.gitignore`, README, and the current server-build requirements. New files were mode 100644. `git diff --cached --check`, full diff review, file-type/size inspection, and staged secret/private-network/binary/restricted-content scans passed. No evidence file, source checkout, binary, image, cache, client asset, database, credential, private network detail, or historical RUN/VAL record was staged.
+
+Commit `a3d8ec9b1321a0b7017972d1ec98d416ef1582af` (`Build clean AzerothCore baseline images`) was created and pushed normally as a fast-forward from `43c22db051fd2fa2117e614fd29025b4eff92ed8`. No force or history rewrite occurred. Immediately after the push, local HEAD, local `origin/main`, and remote `refs/heads/main` all equaled `a3d8ec9b1321a0b7017972d1ec98d416ef1582af`; starting history remained an ancestor.
+
+This record and VAL-0016 are completed by the single authorized validation-only follow-up commit. That commit cannot contain its own object ID; its final local/origin/remote equality is captured by the operation's final verification and final report.
 
 No ChromieCraft/client, pre-extracted data, database initialization, server startup, port publication, image push, Compose orchestration, privileged helper, or source modification occurred. Lifecycle remains **S0 — Proposed**.

@@ -5,10 +5,10 @@
 - Date: 2026-07-15
 - Subject: `BLD-ACORE-WOTLK-001`, `RUN-0016`
 - Branch: `main`
-- Status: **PENDING PUBLICATION — technical build, inspection, containment, and evidence checks pass**
+- Status: **PASS — technical build, inspection, containment, evidence, staged audit, and first governance publication verified**
 - Lifecycle: `S0 — Proposed`
 
-Full PASS is withheld until intended staged-content review, normal commit/push, and matching final local/origin/remote refs succeed.
+PASS was assigned only after the four target builds, binary/package inspection, containment checks, evidence sealing, intended staged-content review, normal first commit/push, and matching post-push local/origin/remote refs succeeded.
 
 ## Validation matrix
 
@@ -57,9 +57,9 @@ Full PASS is withheld until intended staged-content review, normal commit/push, 
 | Evidence privacy/restrictions | PASS | Zero secret/private-network/binary/restricted payload indicators after type-only sanitization. |
 | Documentation accuracy | PASS pre-publication | ADR, guide, manifest, RUN, VAL, README, and sequence align with evidence. |
 | Historical integrity | PASS pre-staging | No historical RUN/VAL modification intended. |
-| Staged-content audit | PENDING | Must pass before commit. |
-| Governance commit/push | PENDING | Normal push only; no force. |
-| Final refs | PENDING | Local HEAD, origin/main, and remote main must match. |
+| Staged-content audit | PASS | Exactly eight intended text paths; whitespace/full-diff/size/type/secret/private-network/restricted-content checks passed. |
+| Governance commit/push | PASS | `a3d8ec9b1321a0b7017972d1ec98d416ef1582af` pushed normally as a fast-forward; no force. |
+| First post-push refs | PASS | Local HEAD, origin/main, and remote main all equaled the governance commit. |
 | Lifecycle | PASS | Remains S0 — Proposed. |
 
 ## Technical conclusion
@@ -70,6 +70,8 @@ The build is identity-pinned but not fully hermetic because Ubuntu packages were
 
 ## Publication boundary
 
-Technical validation is complete. This record must be updated only after staging review, the normal governance commit and push, and final remote-ref verification. Until then, overall governance publication status is pending and no full VAL-0016 PASS is assigned.
+The first publication staged exactly eight intended text/current-document paths, created commit `a3d8ec9b1321a0b7017972d1ec98d416ef1582af`, and pushed it normally. All three refs matched after that push, and starting history remained an ancestor.
+
+Completing RUN-0016 and this record requires the one authorized validation-only follow-up commit. Its object ID cannot be included in its own content; final local/origin/remote equality is captured after that normal push in the operation's final verification and report.
 
 Lifecycle remains **S0 — Proposed**.
