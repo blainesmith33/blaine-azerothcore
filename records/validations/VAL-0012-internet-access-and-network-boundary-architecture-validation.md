@@ -6,10 +6,10 @@
 - Subject: `RUN-0012`
 - Remote: authorized `origin` verified against the operation request
 - Branch: `main`
-- Status: **PENDING — commit, push, and final remote verification not yet performed**
+- Status: **PASS — architecture committed, pushed normally, and remote-ref verified**
 - Lifecycle: `S0 — Proposed`
 
-PASS must not be assigned until the normal push succeeds and local HEAD, local `origin/main`, and remote `refs/heads/main` match.
+PASS was assigned only after the normal architecture push succeeded, local HEAD, local `origin/main`, and remote `refs/heads/main` matched, the starting commit remained an ancestor, and the post-push tree was clean.
 
 ## Architecture and content assertions
 
@@ -37,13 +37,23 @@ PASS must not be assigned until the normal push succeeds and local HEAD, local `
 | No historical validation record falsified | PASS | No prior RUN or VAL record is modified. |
 | No credentials or private network details added | PASS pre-commit | New text contains no credentials, private address, current network identifier, account identifier, or secret. |
 | Lifecycle remains S0 | PASS | All created and modified current documents retain `S0 — Proposed`. |
-| Commit and push succeeded | PENDING | Not yet performed. |
-| Final local and remote refs match | PENDING | Requires post-push verification. |
+| Commit and push succeeded | PASS | Commit `6ac26bb53e07ba92114bd28ea4809bdbd11c7f72` was created with the requested message and pushed normally as a fast-forward. |
+| Final local and remote refs match | PASS at architecture verification | After the first push, all three refs equaled `6ac26bb53e07ba92114bd28ea4809bdbd11c7f72`; the completed records require one validation-only follow-up commit. |
 
 ## Publication validation
 
-Pending staged audit, normal commit, normal push, remote-ref verification, ancestry proof, and final clean-tree verification.
+- Starting commit: `22083a6d9a598dfa27d17be8518fee2770399dc8`.
+- Architecture commit: `6ac26bb53e07ba92114bd28ea4809bdbd11c7f72`.
+- Normal first push: PASS; remote fast-forwarded to the architecture commit.
+- First post-push refs: local HEAD = local `origin/main` = remote main = `6ac26bb53e07ba92114bd28ea4809bdbd11c7f72`.
+- Starting-history ancestry: PASS.
+- Post-first-push status: clean on `main`; 82 tracked files.
+- Staged publication audit: 12 intended Markdown paths, all regular mode 100644 text; no binary, executable, symlink, oversized object, secret, credential, private network detail, numeric socket/port assignment, restricted asset, runtime state, vendor selection, or lifecycle advancement.
+
+## Validation-only record publication
+
+Completing RUN-0012 and this record changes them after the first push. One additional commit with message `Record internet access boundary validation` is required and authorized. Its object ID and final local/origin/remote ref equality must be captured after the commit and normal push in the final operation report; the commit cannot contain its own object ID.
 
 ## Conclusion
 
-Architecture content is ready for staged review. Overall validation remains **PENDING** until publication and final remote verification succeed. The lifecycle remains **S0 — Proposed**.
+The internet-access requirement, network planes, exposure classes, deferred ingress decision, README alignment, and security boundaries are validated and published. No runtime or network configuration changed, no inbound capability was assumed, and no secret or restricted asset was added. Overall validation is **PASS**. The lifecycle remains **S0 — Proposed**.

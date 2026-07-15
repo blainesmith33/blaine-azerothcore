@@ -9,7 +9,7 @@
 - Remote: authorized `origin` verified against the operation request
 - Branch: `main`
 - Starting commit: `22083a6d9a598dfa27d17be8518fee2770399dc8`
-- Publication state in this revision: pre-commit documentation and governance evidence prepared; push verification pending.
+- Publication state in this revision: architecture commit and first normal push validated; completed evidence is ready for the single validation-only follow-up commit.
 
 ## Authorization boundary
 
@@ -88,7 +88,11 @@ The pre-commit staged set contains exactly the 12 intended paths: four new archi
 
 Every staged object is mode 100644 Markdown detected as plain text. No staged object is executable, a symlink, binary, larger than 25 MiB, a restricted/client/database/runtime asset, or an unexpected path. Path-only and content scans found no suspected secret, credential, private address, current network identifier, account identifier, or domain literal. Port-specific review found no numeric socket, bind, or approved gameplay/management port. No vendor or product was selected, no prior RUN or VAL record was modified, and no lifecycle advancement was introduced.
 
-Commit and push results remain pending in this pre-publication revision.
+The architecture commit is `6ac26bb53e07ba92114bd28ea4809bdbd11c7f72`, with message `Define blAIne AzerothCore internet access boundaries` and parent `22083a6d9a598dfa27d17be8518fee2770399dc8`. `git push origin main` completed normally as a fast-forward; no force option was used.
+
+After the first push, local HEAD, local `origin/main`, and remote `refs/heads/main` all equaled `6ac26bb53e07ba92114bd28ea4809bdbd11c7f72`. The starting commit remained an ancestor, the working tree was clean, and the repository contained 82 tracked files.
+
+Completing RUN-0012 and VAL-0012 requires the one authorized validation-only commit with message `Record internet access boundary validation`. Its object ID and the final three-ref equality are necessarily verified after these record bytes are committed and are reported in the final operation report; a commit cannot contain its own object ID.
 
 ## Lifecycle statement
 
