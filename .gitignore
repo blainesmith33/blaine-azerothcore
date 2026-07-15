@@ -75,6 +75,8 @@ restore/
 
 # Build products and generated dependency state
 build/
+!docs/build/
+!docs/build/**
 build-*/
 cmake-build-*/
 out/

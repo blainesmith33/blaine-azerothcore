@@ -35,3 +35,11 @@ Decision authority: ADR-0006
 - SBS-029: The approved checkout's `.git` shall remain a self-contained directory with copied objects and refs wherever the pinned build definition requires Git metadata; linked-worktree pointers, alternates, hardlinks, and portable-drive object dependencies are not approved.
 - SBS-030: Core modifications, generated source changes, and modules require a separate governed source path and shall not mutate `CHK-ACORE-WOTLK-001`.
 - SBS-031: Structural build-context validation does not authorize or validate an image build; image acquisition, Buildx execution, compilation, cache/output placement, and cleanup require the next separate operation.
+- SBS-032: `BLD-ACORE-WOTLK-001` produces only the approved clean `authserver`, `worldserver`, `db-import`, and `tools` local images; a `client-data`, development-server, database-service, or MySQL image is not an approved output of this milestone.
+- SBS-033: Client files and extracted data shall originate only from a separately governed protected client acquisition; the baseline build shall not construct or run the upstream client-data downloader target.
+- SBS-034: Building extractor tooling does not authorize executing extractors. Extractor execution, protected-client mounts, output validation, and generated-data retention require a later bounded operation.
+- SBS-035: Building the database-import image does not authorize database creation, connection, migration, import, or volume creation.
+- SBS-036: Building authserver and worldserver images does not authorize starting either service, generating active configuration, publishing a port, or claiming runtime/gameplay compatibility.
+- SBS-037: Baseline images remain local until registry identity, authentication, disclosure, retention, rollback, and publication governance is approved; no implicit registry push is permitted.
+- SBS-038: Every baseline rebuild shall record the official base-image index and platform-manifest digests plus the acquisition-time package manifest. Mutable package repositories prevent a fully hermetic reproducibility claim unless later snapshot or artifact pinning is approved.
+- SBS-039: Successful image construction advances build evidence only. Database, runtime, client, gameplay, and network milestones remain independently validated boundaries at lifecycle S0 unless separately advanced.

@@ -45,7 +45,11 @@ Official AzerothCore WotLK source objects have now been acquired as `SRC-ACORE-W
 
 The portable exFAT clone remains the verified no-checkout source-object repository; its historical symlink-fidelity failure remains valid. `CHK-ACORE-WOTLK-001` is a separate independent clone on internal ext4, detached at the approved pin. Its required symlink and all 42 executable modes are faithfully represented, the working tree is clean and unmodified, and `.git` is a self-contained directory with copied objects and no alternates or hardlinks.
 
-Static build-context prerequisites pass because the pinned root context contains every referenced path and the Dockerfile can address the real `.git` directory. This does not constitute an AzerothCore image-build validation. No source file has been modified, no module is installed, no image has been built or pulled, no database or client data has been acquired, and no server has started. Buildx remains established but has not yet been used for AzerothCore.
+Static build-context prerequisites pass because the pinned root context contains every referenced path and the Dockerfile can address the real `.git` directory.
+
+`BLD-ACORE-WOTLK-001` is now the clean unmodified baseline image build from `CHK-ACORE-WOTLK-001`. Direct rootless Buildx target builds produced four retained local images: authserver, worldserver, database-import tooling, and extraction tooling. The official Ubuntu 24.04 base index and Linux AMD64 child digests, acquisition-time package manifests, image identities, and compiled binary hashes are recorded in the build manifest.
+
+The compiled server, importer, and four extractor binaries passed non-executing ELF, hash, permission, and runtime-library inspection. The images remain local and were not pushed. No source file was modified, no module is installed, no client data was downloaded or extracted, ChromieCraft has not been acquired, no database was initialized, no server or importer was started, and no port was published.
 
 ## Project Principles
 
@@ -340,10 +344,12 @@ The unresolved issue is the listener representation used by `pasta` for loopback
 2. Established: install and validate Docker Buildx for native rootless builds.
 3. Established: acquire and pin the official AzerothCore source objects for the clean unmodified baseline.
 4. Established: create and validate the symlink-faithful independent internal ext4 checkout `CHK-ACORE-WOTLK-001`.
-5. Next: design and execute the clean unmodified baseline image build from the approved checkout.
-6. Initialize databases only after build validation.
-7. Start authserver and worldserver only after database and configuration validation.
-8. Continue later client, host-local, inbound-connectivity, ingress, and private-service isolation milestones through separate governed operations.
+5. Established: build and inspect the four clean baseline server/tool images as `BLD-ACORE-WOTLK-001`.
+6. Next: acquire and govern the ChromieCraft clean 3.3.5a client as a separate protected client artifact.
+7. Validate the compiled extractors against an approved protected client copy in a separate operation.
+8. Initialize databases only after build and data-boundary validation.
+9. Start authserver and worldserver only after database and configuration validation.
+10. Continue later client, host-local, inbound-connectivity, ingress, and private-service isolation milestones through separate governed operations.
 
 ## Repository Boundaries
 
