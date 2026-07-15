@@ -26,3 +26,7 @@ Decision authority: ADR-0006
 - SBS-020: Native Linux AMD64 baseline builds shall use the checksum-verified, user-scoped Buildx version approved by ADR-0013 and the Docker-driver builder associated with the active rootless context.
 - SBS-021: Extra builders, remote nodes, registry pushes, QEMU, `binfmt_misc`, privileged helpers, and multi-platform emulation require later explicit approval and validation.
 - SBS-022: After Buildx validation, the next major operation shall acquire and pin the official AzerothCore source for the clean unmodified baseline; source acquisition and building remain separate governed evidence boundaries.
+- SBS-023: `SRC-ACORE-WOTLK-001` source objects are pinned to the acquisition-time official `master` commit, excluded from the governance repository, and shall not move with upstream without a new governed source update.
+- SBS-024: A baseline image build requires both Git object integrity and a faithful detached working-tree checkout; object acquisition alone is not build readiness.
+- SBS-025: Because the authoritative exFAT source path cannot represent the pinned symbolic link, a later decision shall approve a symlink-faithful working-tree location or mechanism and validate it before any AzerothCore image build.
+- SBS-026: Database initialization, client-data acquisition, authserver startup, and worldserver startup remain separate post-build operations and shall not occur as a side effect of source acquisition or checkout remediation.

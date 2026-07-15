@@ -148,3 +148,6 @@ desktop.ini
 *.exe
 *.dll
 *.msi
+
+# Official upstream source checkouts — governed separately and never vendored
+linux/upstream/azerothcore-wotlk/

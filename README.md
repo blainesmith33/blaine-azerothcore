@@ -41,7 +41,9 @@ No public ingress is currently implemented or validated.
 
 Docker Buildx v0.35.0 is installed as a checksum-verified, user-scoped CLI plugin on internal storage. Native Linux AMD64 `FROM scratch` builds passed both directly and through Docker Compose using the builder associated with the active `rootless` context. Docker remains rootless with `fuse-overlayfs`; no extra builder, QEMU, privileged helper, registry push, port publication, or multi-platform support was introduced. Buildx updates remain manual governed operations.
 
-No AzerothCore source tree, databases, custom modules, client modifications, ChromieCraft client, or operational Realm Control software is currently included in this repository.
+Official AzerothCore WotLK source objects have now been acquired as `SRC-ACORE-WOTLK-001` from `azerothcore/azerothcore-wotlk` `master` and pinned to `34a8bd6655c02448d3da6195dcd00647f634dde3` (tree `25ad25f5fb8e119f68fef69b080934f1182ad8d6`). The full-history upstream clone is governed separately beneath `linux/upstream/azerothcore-wotlk/` and is ignored by this parent repository.
+
+Git object integrity and deterministic tree identity passed. Checkout fidelity did not: the pinned tree contains one symbolic link that the authoritative exFAT project filesystem cannot represent. The verified clone therefore remains no-checkout object storage, not a detached build-ready working tree. No source file has been modified, no module is installed, no image has been built or pulled, no database or client data has been acquired, and no server has started. Buildx remains established but has not been used for AzerothCore.
 
 ## Project Principles
 
@@ -334,15 +336,18 @@ The unresolved issue is the listener representation used by `pasta` for loopback
 
 1. Established: record the internet-access and trust-boundary architecture.
 2. Established: install and validate Docker Buildx for native rootless builds.
-3. Acquire and pin the official AzerothCore source for the clean unmodified baseline.
-4. Build the clean AzerothCore baseline.
-5. Validate host-local operation.
-6. Determine available inbound-connectivity conditions.
-7. Select an ingress architecture through a later ADR.
-8. Implement only the approved public gameplay exposure.
-9. Validate from an independent internet connection.
-10. Validate that private and prohibited services remain inaccessible.
-11. Introduce authenticated remote management only after its own architecture and threat-model approval.
+3. Established with split result: acquire and pin the official AzerothCore source objects for the clean unmodified baseline; checkout fidelity remains deferred on exFAT.
+4. Next: approve a symlink-faithful source working-tree location or mechanism and complete detached-checkout validation.
+5. Design and execute the clean unmodified baseline image build from the pinned source only after checkout fidelity passes.
+6. Initialize databases only after build validation.
+7. Start authserver and worldserver only after database and configuration validation.
+8. Validate host-local operation.
+9. Determine available inbound-connectivity conditions.
+10. Select an ingress architecture through a later ADR.
+11. Implement only the approved public gameplay exposure.
+12. Validate from an independent internet connection.
+13. Validate that private and prohibited services remain inaccessible.
+14. Introduce authenticated remote management only after its own architecture and threat-model approval.
 
 ## Repository Boundaries
 
