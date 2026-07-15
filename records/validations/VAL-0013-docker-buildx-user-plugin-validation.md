@@ -5,10 +5,10 @@
 - Date: 2026-07-14
 - Subject: `RUN-0013`
 - Branch: `main`
-- Status: **PENDING — runtime and cleanup pass; Git commit/push verification pending**
+- Status: **PASS — runtime, cleanup, governance publication, and remote-ref verification passed**
 - Lifecycle: `S0 — Proposed`
 
-PASS must not be assigned until the intended Markdown set is audited, committed, pushed normally, and local HEAD, local `origin/main`, and remote `main` match.
+PASS was assigned only after the intended Markdown set was audited, committed, pushed normally, local HEAD, local `origin/main`, and remote `main` matched, starting history remained an ancestor, and post-push runtime/cleanup invariants passed.
 
 ## Installation, runtime, and containment assertions
 
@@ -45,8 +45,8 @@ PASS must not be assigned until the intended Markdown set is audited, committed,
 | Unrelated Docker state preserved | PASS | No system/buildx prune command; only operation-owned container/images/temp files removed. |
 | Documentation aligned | PASS pre-publication | ADR, tooling policy, execution record, README, and build sequence describe the corrected builder model and update policy. |
 | No restricted asset or secret published | PASS pre-commit | Six staged Markdown objects reviewed; zero binary, temporary context, secret, private network detail, client asset, or restricted path. |
-| Git commit and push | PENDING | Not yet performed. |
-| Final refs match | PENDING | Requires post-push verification. |
+| Git commit and push | PASS | Commit `d35ecf50c80c5bdb01ffdc6c189ab27f7f62f030` was pushed normally as a fast-forward. |
+| Final refs match | PASS at governance verification | After first push all three refs equaled `d35ecf50c80c5bdb01ffdc6c189ab27f7f62f030`; completed records require one validation-only follow-up commit. |
 | Lifecycle remains S0 | PASS | No advancement authorized; all new current records state `S0 — Proposed`. |
 
 ## Initial-attempt validation classification
@@ -61,8 +61,18 @@ With `rootless*` already selected, Compose succeeded by using the selected conte
 
 ## Publication validation
 
-Staged-content audit passed. Normal commit, normal push, remote-ref verification, ancestry proof, and final clean-tree/runtime verification remain pending.
+- Starting commit: `311be3d0e5178c8560f7a23da61c0806bea0c59c`.
+- Governance commit: `d35ecf50c80c5bdb01ffdc6c189ab27f7f62f030`.
+- Normal first push: PASS; remote fast-forwarded to the governance commit.
+- First post-push refs: local HEAD = local `origin/main` = remote main = `d35ecf50c80c5bdb01ffdc6c189ab27f7f62f030`.
+- Starting-history ancestry: PASS.
+- Post-first-push tree: clean on `main`; 86 tracked files.
+- Post-first-push runtime: Buildx v0.35.0 discoverable; context `rootless`; `fuse-overlayfs`; zero RUN-0013 resource.
+
+## Validation-only record publication
+
+Completing RUN-0013 and this record changes them after the first push. One additional commit with message `Record Docker Buildx rootless validation` is required and authorized. Its object ID and final local/origin/remote equality must be captured after the commit and normal push in the final operation report; the commit cannot contain its own object ID.
 
 ## Conclusion
 
-Plugin provenance, installation, rootless builder discovery, direct native scratch building, Compose native scratch building, marker integrity, containment, and cleanup pass. Overall status remains **PENDING** solely until Git publication validation completes. No AzerothCore acquisition or build occurred. The lifecycle remains **S0 — Proposed**.
+Plugin provenance, installation, rootless builder discovery, direct native scratch building, Compose native scratch building, marker integrity, containment, cleanup, governance integrity, and publication pass. Overall validation is **PASS**. No AzerothCore acquisition or build occurred. The lifecycle remains **S0 — Proposed**.

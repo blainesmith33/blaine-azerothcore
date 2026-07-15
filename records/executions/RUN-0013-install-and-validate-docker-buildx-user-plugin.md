@@ -10,7 +10,7 @@
 - Authoritative repository: `/run/media/deck/blAIneXPLAT/azerothcore/`
 - Branch: `main`
 - Starting commit: `311be3d0e5178c8560f7a23da61c0806bea0c59c`
-- Publication state in this revision: runtime validation and cleanup passed; commit and push verification pending.
+- Publication state in this revision: runtime validation, cleanup, governance commit, and first normal push verified; completed evidence is ready for the single validation-only follow-up commit.
 
 ## Authorization boundary
 
@@ -167,7 +167,11 @@ Updated:
 
 The pre-commit staged set contained exactly the six intended Markdown paths: four new governance/tooling documents and two narrowly updated current documents. Cached status, stat, name-status, whitespace check, and the complete diff were reviewed. Every object was mode 100644 plain text; the largest was 14,145 bytes. No binary, executable, Buildx asset, checksum manifest, Dockerfile, Compose context, marker, runtime state, secret, credential, private network detail, restricted asset, or unexpected path was staged. No historical RUN/VAL record changed and no lifecycle advancement appeared. `git diff --cached --check` exited 0.
 
-Commit, push, and final refs remain pending in this pre-publication revision.
+The governance commit is `d35ecf50c80c5bdb01ffdc6c189ab27f7f62f030`, message `Install and validate Docker Buildx for rootless builds`, with parent `311be3d0e5178c8560f7a23da61c0806bea0c59c`. `git push origin main` completed normally as a fast-forward; no force option was used.
+
+After the first push, local HEAD, local `origin/main`, and remote `refs/heads/main` all equaled `d35ecf50c80c5bdb01ffdc6c189ab27f7f62f030`. The starting commit remained an ancestor, the working tree was clean, and the repository contained 86 tracked files. Buildx v0.35.0 remained discoverable, context remained `rootless`, storage remained `fuse-overlayfs`, and RUN-0013 resource count remained zero.
+
+Completing RUN-0013 and VAL-0013 requires the one authorized validation-only commit with message `Record Docker Buildx rootless validation`. Its object ID and final three-ref equality are necessarily verified after these record bytes are committed and are reported in the final operation report; a commit cannot contain its own object ID.
 
 ## Lifecycle and acquisition statement
 
