@@ -9,7 +9,7 @@
 - Governance root: `/run/media/deck/blAIneXPLAT/azerothcore/`
 - Source object clone: `/run/media/deck/blAIneXPLAT/azerothcore/linux/upstream/azerothcore-wotlk/`
 - Starting governance commit: `38c1e515d47564fe7f04f3d55503785b104ce5a7`
-- Publication state in this revision: source/object validation and governance content complete; commit and push evidence pending normal publication.
+- Publication state in this revision: source/object validation, staged audit, governance commit, and first normal push verified; completed evidence is ready for the single validation-only follow-up commit.
 
 ## Authorization boundary
 
@@ -132,4 +132,10 @@ No source checkout, source modification, module, submodule, LFS pull, archive ex
 
 ## Staged audit, publication, and lifecycle
 
-The staged audit, commit, normal push, and final refs will be completed only for the intended Markdown/governance set after source paths remain ignored and all split-result wording is verified. No full validation PASS is claimed. Lifecycle remains **S0 — Proposed**.
+The staged set contained exactly nine intended paths: six new Markdown governance/source documents, `linux/upstream/README.md`, and narrow updates to `.gitignore`, root `README.md`, and server build-sequence requirements. All staged modes were 100644. Cached status, stat, name-status, whitespace, complete diff, file-mode, path-only secret/binary, restricted-content, and upstream-boundary checks passed. No source checkout path, nested Git content, executable, binary, archive, Dockerfile copy, database/client data, credential, private network detail, historical RUN/VAL change, or lifecycle advancement was staged.
+
+Governance commit `abe2b13fc44e2b10a326de3e397e628419b388ef`, message `Acquire and pin official AzerothCore source`, was created with parent `38c1e515d47564fe7f04f3d55503785b104ce5a7` and pushed normally as a fast-forward. After the first push, local HEAD, local `origin/main`, and remote `refs/heads/main` all equaled `abe2b13fc44e2b10a326de3e397e628419b388ef`; starting-history ancestry passed and the governance tree was clean.
+
+Completing this RUN and VAL changes their bytes after the first push. One validation-only commit with message `Record official AzerothCore source validation` is therefore required. Its object ID and final three-ref equality are necessarily captured after commit and reported in the operation’s final response; a commit cannot contain its own object ID.
+
+No full source-checkout validation PASS is claimed. Lifecycle remains **S0 — Proposed**.

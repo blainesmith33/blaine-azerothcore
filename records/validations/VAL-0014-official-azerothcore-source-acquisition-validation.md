@@ -48,8 +48,8 @@ Full PASS is prohibited because the authoritative exFAT mount cannot represent t
 | Manifest accuracy | PASS pre-publication | Split object/checkout state, counts, hashes, license, and boundaries match evidence. |
 | README/current sequence alignment | PASS pre-publication | Current state will report object acquisition and checkout deferral without claiming a build. |
 | Secret/restricted publication | PASS pre-staging | Records contain no credential values, client assets, source vendoring, binary, or private network detail. |
-| Governance commit/push | PENDING | Must pass staged audit and normal push; no force push. |
-| Final governance refs | PENDING | Must be verified after publication. |
+| Governance commit/push | PASS | Commit `abe2b13fc44e2b10a326de3e397e628419b388ef` pushed normally as a fast-forward; no force push. |
+| Governance refs after first push | PASS | Local HEAD, origin/main, and remote main all equaled `abe2b13fc44e2b10a326de3e397e628419b388ef`; starting history remained an ancestor. |
 | Lifecycle remains S0 | PASS | No advancement authorized or recorded. |
 
 ## Split classification
@@ -68,7 +68,9 @@ This result is not a source-integrity failure and does not authorize a workaroun
 
 ## Publication validation
 
-Publication remains pending until only the intended Markdown/governance paths are staged, the ignored upstream clone is proven absent from the index, the complete diff passes review, normal commit/push succeeds, and local HEAD, local origin/main, and remote main match. The record must not be changed to overall PASS merely because governance publication succeeds.
+The first publication staged exactly the nine intended text/governance paths. Every staged object was mode 100644; cached whitespace and complete-diff review passed; path-only secret/binary findings were zero; no upstream source path appeared in the index. Commit `abe2b13fc44e2b10a326de3e397e628419b388ef` was pushed normally and all three refs matched it.
+
+Completing RUN-0014 and this validation record requires the one authorized validation-only commit. Its object ID and final local/origin/remote equality must be captured after that commit and normal push in the final operation report. Governance publication success does not change the overall source result from split/not-full-PASS.
 
 ## Conclusion
 
