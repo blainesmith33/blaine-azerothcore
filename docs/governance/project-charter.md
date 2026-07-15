@@ -16,6 +16,7 @@ Establish a governed, auditable, and reproducible reference implementation for r
 - Identification and later validation of storage, container, build, runtime, database, networking, client, backup, and operational requirements.
 - Governance of multiple isolated AzerothCore instances intended for baseline, research, Blaine development, integrated gameplay, and disposable experiments.
 - Evaluation, provenance, compatibility convergence, adaptation, replacement, porting, or independent implementation of modular gameplay features.
+- Governed future internet accessibility for authorized players, with public gameplay separated from authenticated management, private internal, host-local, and prohibited-direct service boundaries.
 
 ## Out of scope at S0
 

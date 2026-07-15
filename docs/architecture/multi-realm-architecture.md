@@ -24,6 +24,8 @@ Every realm must have a unique and recorded:
 - backup and restore set;
 - lifecycle, execution, validation, incident, and release records.
 
+Each networked realm service must also receive exactly one approved exposure classification per deployment profile under ADR-0012. Public player access is limited to the minimum explicitly approved gameplay services. Exact ports are derived from pinned realm configuration and recorded in deployment manifests; a shared login topology does not make databases, control planes, metrics, backups, or other internal services public.
+
 Authentication data may be shared only through the approved topology. Realm-specific character, world, module, and configuration state remains isolated so research, migration, rollback, and failure do not silently affect another realm.
 
 ## Realm classes and labels
@@ -56,4 +58,4 @@ Linux and Windows implementations may share this intended logical model, but top
 
 ## Proposed control-plane relationship
 
-blAIne Realm Control is planned as a separate local-first control plane, not a process embedded in a worldserver. It must be able to report a realm as stopped or unhealthy without sharing that realm's failure boundary. Realm, container, database, and host command contexts remain distinct, and the first control-plane implementation stage is read-only. These capabilities are NOT_IMPLEMENTED.
+blAIne Realm Control is planned as a separate control plane, not a process embedded in a worldserver. Its initial profile is host-local, and any future remote profile must remain an authenticated management trust domain separate from public gameplay. It must be able to report a realm as stopped or unhealthy without sharing that realm's failure boundary. Realm, container, database, and host command contexts remain distinct, and the first control-plane implementation stage is read-only. These capabilities are NOT_IMPLEMENTED.

@@ -31,7 +31,10 @@ Realm, container, database, and host operations use separate adapters and permis
 
 A generated adapter operation must be previewed when required, explicitly authorized, captured with its result, and followed by postcondition validation. Failed attempts remain evidence.
 
+## Remote-management ingress boundary
+
+Any future remote Realm Control interface must enter through an authenticated and encrypted management gateway and submit constrained requests to this broker. Public gameplay ingress is a separate trust domain and conveys no management authority. The Docker socket, container runtime control socket, raw database interfaces, host interfaces, backup stores, secret stores, and internal message brokers must never be exposed directly to a browser or the public internet.
+
 ## Current boundary
 
 No actual AzerothCore command syntax, SQL statement, container command, host command, server hook, or adapter behavior is authoritative or validated in this S0 scaffold. All operation templates remain placeholders.
-

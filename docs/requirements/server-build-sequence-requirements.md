@@ -19,4 +19,7 @@ Decision authority: ADR-0006
 - SBS-013: Integration requires combined build, database, runtime, gameplay, conflict, removal, rollback, upgrade, provenance, and approval evidence.
 - SBS-014: All templates remain disabled and PLANNED_NOT_IMPLEMENTED at S0.
 - SBS-015: Linux evidence does not validate Windows.
-
+- SBS-016: The internet-access and network-trust-boundary architecture shall be recorded before Buildx installation or baseline acquisition.
+- SBS-017: The clean baseline shall be built and validated host-locally before inbound-connectivity conditions are characterized or an ingress mechanism is selected.
+- SBS-018: Public gameplay ingress implementation requires a later ADR based on connectivity and threat-model evidence, followed by independent internet validation and private-service non-exposure validation.
+- SBS-019: Authenticated remote management shall follow its own architecture and threat-model approval and shall not be introduced as a side effect of public gameplay exposure.

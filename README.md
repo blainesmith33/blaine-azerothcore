@@ -16,7 +16,8 @@ The project is intended to support:
 - Server modules, client addons, and client patches
 - Governed full-stack feature packages
 - A structured World of Warcraft documentation corpus
-- **blAIne Realm Control**, a local-first observability and control layer
+- Internet-accessible gameplay for authorized remote players through a later governed ingress design
+- **blAIne Realm Control**, initially host-local, with any future remote access constrained by a separate authenticated management boundary
 
 This README describes the intended architecture and the current verified state. It does not imply that every described component has already been implemented.
 
@@ -34,7 +35,9 @@ Rootless Docker is installed and can run ordinary containers using:
 
 The Docker storage remediation has passed.
 
-A strict network-boundary validation remains unresolved because the rootless `pasta` forwarding socket may appear as `0.0.0.0` even when Docker is instructed to publish only to `127.0.0.1`.
+A strict host-local listener-shape validation remains unresolved because the rootless `pasta` forwarding socket may appear broader than the loopback address Docker was instructed to publish. This result applies to validation of host-local bindings; it does not select or disqualify a future public-ingress architecture.
+
+No public ingress is currently implemented or validated.
 
 Docker Buildx is not yet installed.
 
@@ -62,9 +65,9 @@ Every realm must identify the exact server, database, module, client, addon, pat
 
 The server remains authoritative for protected gameplay state. Client and addon messages must be treated as untrusted requests.
 
-### Local-first control
+### Constrained control
 
-blAIne Realm Control must not expose the Docker socket directly to a browser or provide unrestricted host-level access.
+blAIne Realm Control must not expose the Docker socket directly to a browser or provide unrestricted host-level access. Any future remote management must use authenticated, encrypted, brokered, authorized, logged, and auditable mechanisms.
 
 ### Legal and provenance boundaries
 
@@ -204,7 +207,7 @@ Custom modules and specialized realms should be introduced only after the baseli
 
 ## blAIne Realm Control
 
-**blAIne Realm Control** is the provisional name for the planned local-first observability and control layer.
+**blAIne Realm Control** is the provisional name for the planned observability and control layer. Its initial deployment profile is host-local. Remote access may be considered later only through a separately approved authenticated management architecture.
 
 Initial maturity target:
 
@@ -294,6 +297,22 @@ Each acquired item should record:
 
 The corpus is intended to preserve provenance and applicability, not merely collect files.
 
+## Network Exposure Architecture
+
+Authorized players are expected eventually to connect from outside the local network. Public internet gameplay access is therefore a required future deployment capability, but it is not currently implemented, configured, or validated.
+
+Every networked service must eventually receive one approved exposure classification per deployment profile. The provisional categories are:
+
+- public gameplay, limited to the minimum explicitly approved player-facing services;
+- authenticated remote management, separated from gameplay and protected by encrypted, brokered access;
+- private internal services, including databases and container-to-container control traffic;
+- host-local services, including development diagnostics and disposable validation listeners; and
+- prohibited-direct services, including Docker control sockets, raw database access, backup interfaces, credential stores, and unrestricted command execution.
+
+Exact gameplay ports, bind addresses, firewall policy, and ingress methods remain undecided. They must be derived later from pinned AzerothCore configuration and approved deployment manifests. No current inbound capability, router control, address type, or ISP behavior is assumed.
+
+The future blAIne Realm Control interface may support authorized remote administrators only through an authenticated, encrypted, constrained, and auditable management path. A browser must never receive direct Docker-socket or database-root access. External internet validation is a separate future milestone after a clean host-local baseline and an ingress ADR.
+
 ## Current Docker Boundary
 
 The current rootless Docker environment uses:
@@ -307,23 +326,20 @@ The current rootless Docker environment uses:
 
 Container execution, DNS, HTTPS transport, resource limits, Compose execution, and cleanup have passed validation.
 
-The unresolved issue is the listener representation used by `pasta` for loopback-requested port publication. AzerothCore ports must not be exposed to the LAN until that boundary is resolved or explicitly accepted through an architecture decision.
+The unresolved issue is the listener representation used by `pasta` for loopback-requested publication. It remains relevant to `NET-HOST-LOCAL` validation. It does not prove public reachability and does not determine the final public gameplay ingress path. No AzerothCore port is approved for exposure by the current Docker records.
 
 ## Planned Execution Sequence
 
-1. Resolve or formally defer the rootless Docker port-publication boundary.
+1. Record the internet-access and trust-boundary architecture.
 2. Install and validate Docker Buildx.
-3. Formalize server/client compatibility architecture.
-4. Formalize documentation-corpus architecture and provenance rules.
-5. Acquire the official documentation corpus.
-6. Acquire and inventory the official ChromieCraft-compatible client.
-7. Acquire the official AzerothCore source repository.
-8. Pin an exact AzerothCore commit.
-9. Build the clean unmodified baseline.
-10. Initialize databases.
-11. Start authserver and worldserver locally.
-12. Validate connection with the matching clean client.
-13. Begin module research and specialized realm development.
+3. Acquire and build the clean AzerothCore baseline.
+4. Validate host-local operation.
+5. Determine available inbound-connectivity conditions.
+6. Select an ingress architecture through a later ADR.
+7. Implement only the approved public gameplay exposure.
+8. Validate from an independent internet connection.
+9. Validate that private and prohibited services remain inaccessible.
+10. Introduce authenticated remote management only after its own architecture and threat-model approval.
 
 ## Repository Boundaries
 

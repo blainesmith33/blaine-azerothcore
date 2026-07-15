@@ -13,6 +13,8 @@ Current lifecycle status: **S0 — Proposed**
 - **MR-006:** Baseline, research, development, integrated, and disposable classifications shall be supported.
 - **MR-007:** Defined realms may remain stopped; simultaneous operation shall respect later-validated Steam Deck resource limits.
 - **MR-008:** Client-modifying modules shall declare whether they require unified client assets, separate client profiles, or separate client installations.
+- **MR-009:** Authorized remote players shall be supportable through separately governed public gameplay ingress; exact service ports and bind settings shall come from pinned configuration and approved deployment manifests.
+- **MR-010:** Each networked service shall receive exactly one approved exposure classification per deployment profile, and public gameplay classification shall not make private or management services public.
 
 ## Version and convergence requirements
 
@@ -45,7 +47,7 @@ Current lifecycle status: **S0 — Proposed**
 ## Control-plane, addon, and feature-package requirements
 
 - **CP-001:** A proposed blAIne Realm Control plane shall remain separate from worldservers and capable of observing a stopped realm.
-- **CP-002:** Initial Realm Control operation shall be local-only and read-only; no internet exposure is approved.
+- **CP-002:** Initial Realm Control operation shall be `NET-HOST-LOCAL` and read-only; future remote access requires separate authenticated, encrypted, brokered, and auditable approval under ADR-0012.
 - **FP-001:** Client addons shall be governed as a distinct asset class and treated as untrusted request origins.
 - **FP-002:** A coordinated server-module/addon/control-plane feature shall pin and validate every component and protocol independently.
 - **FP-003:** Protected gameplay state shall remain server-authoritative.

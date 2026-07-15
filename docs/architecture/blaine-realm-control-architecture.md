@@ -19,7 +19,7 @@ blAIne
 
 ## Separation and trust boundary
 
-Realm Control is a separate local-first control plane, not a process embedded in a worldserver container. It must remain capable of reporting when any realm is stopped or unhealthy. A visual client communicates with a governed backend; it receives no unrestricted Docker socket, database-root, AzerothCore-administrator, host-root, or filesystem-write access.
+Realm Control is a separate control plane, not a process embedded in a worldserver container. Its initial deployment profile is `NET-HOST-LOCAL`, and it must remain capable of reporting when any realm is stopped or unhealthy. A visual client communicates with a governed backend; it receives no unrestricted Docker socket, database-root, AzerothCore-administrator, host-root, or filesystem-write access.
 
 The backend separates realm, container, database, and host contexts. Read-only observability precedes any change operation. Raw command access is disabled by default, and any future non-root host shell and privilege elevation require distinct authorization controls.
 
@@ -50,5 +50,4 @@ Every capability below is NOT_IMPLEMENTED and NOT_YET_VALIDATED:
 
 ## Maturity
 
-RC-S0 through RC-S6 are defined by ADR-0007. They track the component only and never replace S0 through S8 project lifecycle controls. No remote internet exposure is approved.
-
+RC-S0 through RC-S6 are defined by ADR-0007. They track the component only and never replace S0 through S8 project lifecycle controls. ADR-0012 records future remote management as a possible `NET-REMOTE-AUTHENTICATED` capability, not as a current implementation authorization. Any such access requires a separately approved authenticated and encrypted ingress layer, a constrained command/API broker, explicit authorization, logging, and audit evidence. Direct public access to Docker, databases, host interfaces, or unrestricted command execution remains prohibited.
